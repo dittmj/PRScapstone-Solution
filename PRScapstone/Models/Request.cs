@@ -21,7 +21,7 @@ namespace PRScapstone.Models
         public decimal Total { get; set; }
         public int UserId { get; set; }
         public User? User { get; set; }
-        public virtual ICollection<RequestLine> RequestLines { get; set; }
+        public virtual ICollection<RequestLine>? RequestLines { get; set; }
 
       
         

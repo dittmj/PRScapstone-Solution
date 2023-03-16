@@ -21,8 +21,8 @@ namespace PRScapstone.Models
         [StringLength(5)]
         public string Zip { get; set; } = string.Empty;
         [StringLength(12)]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         [StringLength(255)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }
