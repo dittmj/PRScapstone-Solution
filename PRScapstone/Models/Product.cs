@@ -19,6 +19,7 @@ namespace PRScapstone.Models
         [StringLength(255)]
         public string PhotoPath { get; set; }
         public int VendorId { get; set; }
-        public virtual ICollection<Vendor>? Vendors { get; set; }
+        public Vendor Vendor { get; set; }
+        
     }
 }

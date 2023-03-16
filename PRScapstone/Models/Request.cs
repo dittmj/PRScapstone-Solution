@@ -12,7 +12,7 @@ namespace PRScapstone.Models
         [StringLength(80)]
         public string Justification { get; set; } = string.Empty;
         [StringLength(80)]
-        public string RejectionReason { get; set; }
+        public string? RejectionReason { get; set; }
         [StringLength(20)]
         public string DeliveryMode { get; set; } = string.Empty;
         [StringLength(10)]
@@ -20,6 +20,10 @@ namespace PRScapstone.Models
         [Column(TypeName = "decimal(11,2)")]
         public decimal Total { get; set; }
         public int UserId { get; set; }
-        public virtual ICollection<User>? Users { get; set; }
+        public User? User { get; set; }
+        public virtual ICollection<RequestLine> RequestLines { get; set; }
+
+      
+        
     }
 }

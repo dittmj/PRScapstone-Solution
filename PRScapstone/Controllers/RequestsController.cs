@@ -41,23 +41,22 @@ namespace PRScapstone.Controllers
             return request;
         }
         [HttpGet("reviews/{userId}")]
-        public IActionResult GetReviews(int userId)
+        public async Task<ActionResult<IEnumerable<Request>>> GetReviews(int userId)
         {
             // Get all requests in "REVIEW" status that are not owned by the user with the specified ID
-            List<Request> reviews = _context.Requests
+             return await _context.Requests
                 .Where(r => r.Status == "REVIEW" && r.UserId != userId)
-                .ToList();
+                .ToListAsync();
 
-            // Return the list of reviews as JSON
-            return Ok(reviews);
+           
         }
-    
+
         // PUT: api/Requests/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
 
         [HttpPut("review/{id}")]
-        public IActionResult Review(int id)
+        public async Task<ActionResult<IEnumerable<Request>>> Reviews(int id)
         {
             // Get the request by ID
             Request request = _context.Requests.FirstOrDefault(r => r.Id == id);
@@ -81,22 +80,22 @@ namespace PRScapstone.Controllers
             return Ok(new { message = "Request updated successfully." });
         }
         [HttpPut("approve/{id}")]
-        public IActionResult Approve(int id)
+        public async Task<IActionResult> Approve(int id)
         {
             // Get the request by ID
             Request request = _context.Requests.FirstOrDefault(r => r.Id == id);
 
             // Set the status of the request to "APPROVED"
-            request.Status = "APPROVED";
+             request.Status = "APPROVED";
 
             // Update the status of the request in the database
             _context.SaveChanges();
 
             // Return a success message
-            return Ok(new { message = "Request updated successfully." });
+           return Ok(new { message = "Request updated successfully." });
         }
         [HttpPut("reject/{id}")]
-        public IActionResult Reject(int id)
+        public async Task<IActionResult> Reject(int id)
         {
             // Get the request by ID
             Request request = _context.Requests.FirstOrDefault(r => r.Id == id);

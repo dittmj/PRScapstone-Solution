@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PRScapstone.Models;
 
@@ -19,12 +14,13 @@ namespace PRScapstone.Controllers
         {
             _context = context;
         }
+        [HttpGet("{request/id}")]
         private async Task RecalculateRequestTotal(int requestId)
         {
             // Get the request by ID
             Request request = await _context.Requests
                 .Include(r => r.RequestLines)
-                .FirstOrDefaultAsync(r => r.Id == requestId);
+                .SingleOrDefaultAsync(r => r.Id == requestId);
 
             if (request != null)
             {

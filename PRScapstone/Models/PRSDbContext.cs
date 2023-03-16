@@ -11,11 +11,6 @@ namespace PRScapstone.Models
         public DbSet<RequestLine> RequestLines { get; set; } = null!;
         public PRSDbContext() { }
         public PRSDbContext(DbContextOptions<PRSDbContext> options) : base(options) { }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var connStr = "server=localhost\\sqlexpress;" + "database=PRScapstone;" +
-                          "trusted_connection=true;" + "trustServerCertificate=true;";
-            optionsBuilder.UseSqlServer(connStr);
-        }
+        
     }
 }
